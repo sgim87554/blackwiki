@@ -1,0 +1,133 @@
+/* 블랙위키 — 문서 본문 (나무마크 출력) */
+.wiki { font-size: 15.5px; line-height: 1.78; }
+.wiki::after { content: ''; display: block; clear: both; }
+.wiki a.missing { color: var(--link-missing); }
+.wiki a.ext { color: var(--link-ext); }
+.wiki a.self { color: inherit; font-weight: 700; }
+.wiki a[data-anchor] { color: var(--link); cursor: pointer; }
+.wiki-p { margin: 0; }
+.wiki hr { margin: 14px 0; border: 0; border-top: 1px solid var(--border); }
+.wiki-clear { clear: both; }
+[data-aid] { scroll-margin-top: 80px; }
+.flash { animation: flash 1.4s ease-out; }
+@keyframes flash { from { background: color-mix(in srgb, var(--link) 20%, transparent); } to { background: transparent; } }
+
+/* 제목 · 접기 */
+.wiki-h {
+  display: flex; align-items: center; gap: 9px;
+  margin: 30px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border);
+  font-weight: 800; line-height: 1.38; letter-spacing: -.025em; cursor: pointer;
+}
+.wiki-h .num { color: var(--link); font-weight: 800; }
+.wiki-h .ht { min-width: 0; }
+h2.wiki-h { font-size: 1.62em; }
+h3.wiki-h { font-size: 1.4em; }
+h4.wiki-h { font-size: 1.22em; }
+h5.wiki-h { font-size: 1.1em; border-bottom: 0; }
+h6.wiki-h { font-size: 1em; border-bottom: 0; }
+.fold-ico {
+  flex: none; width: 8px; height: 8px; margin: 0 6px 0 auto;
+  border-right: 2px solid var(--text-3); border-bottom: 2px solid var(--text-3);
+  transform: rotate(45deg); opacity: 0; transition: transform .15s, opacity .15s;
+}
+.wiki-h:hover .fold-ico { opacity: 1; }
+.wiki-h.folded { color: var(--text-2); }
+.wiki-h.folded .fold-ico { opacity: 1; transform: rotate(-45deg); }
+.wiki-sec.folded { display: none; }
+
+/* 목차 */
+.wiki-toc {
+  display: inline-block; min-width: 230px; max-width: 100%;
+  margin: 8px 0 16px; padding: 14px 22px 14px 18px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2);
+}
+.wiki-toc-title { margin-bottom: 6px; font-size: 15px; font-weight: 800; }
+.wiki-toc-item { font-size: 14px; line-height: 1.9; }
+
+/* 목록 · 들여쓰기 · 인용 */
+.wiki-list { margin: 3px 0; padding-left: 1.7em; }
+.wiki-list li { margin: 1px 0; }
+.wiki-list li::marker { color: var(--text-3); }
+.wiki-indent { padding-left: 1.4em; }
+.wiki-quote {
+  margin: 10px 0; padding: 10px 16px;
+  border-left: 4px solid var(--border-strong); border-radius: 0 10px 10px 0;
+  background: var(--surface-2); color: var(--text-2);
+}
+
+/* 코드 */
+.wiki pre {
+  margin: 8px 0; padding: 12px 14px; overflow: auto;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--code);
+  font-family: var(--mono); font-size: 13.5px; line-height: 1.6; white-space: pre;
+}
+.wiki pre code { padding: 0; background: none; font-size: inherit; }
+
+/* 글자 크기 · 색 */
+.wiki-size-up-1 { font-size: 1.28889em; }
+.wiki-size-up-2 { font-size: 1.38889em; }
+.wiki-size-up-3 { font-size: 1.48144em; }
+.wiki-size-up-4 { font-size: 1.62962em; }
+.wiki-size-up-5 { font-size: 1.85185em; }
+.wiki-size-down-1 { font-size: .8889em; }
+.wiki-size-down-2 { font-size: .7778em; }
+.wiki-size-down-3 { font-size: .6667em; }
+.wiki-size-down-4 { font-size: .5556em; }
+.wiki-size-down-5 { font-size: .4444em; }
+.c-fg { color: var(--cfg); }
+.c-bg { background-color: var(--cbg); }
+:root[data-theme="dark"] .c-fg { color: var(--cfgd, var(--cfg)); }
+:root[data-theme="dark"] .c-bg { background-color: var(--cbgd, var(--cbg)); }
+
+/* 접기 · 상자 */
+.wiki-fold { margin: 4px 0; }
+.wiki-fold > summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 700; list-style: none; user-select: none; }
+.wiki-fold > summary::-webkit-details-marker { display: none; }
+.wiki-fold > summary::before {
+  content: ''; width: 6px; height: 6px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg); transition: transform .15s; opacity: .6;
+}
+.wiki-fold[open] > summary::before { transform: rotate(45deg); }
+.wiki-fold-body { padding: 4px 0 2px; }
+
+/* 표 */
+.wiki-table-wrap { max-width: 100%; margin: 10px 0; overflow-x: auto; }
+.wiki-table-wrap.al-center > table { margin: 0 auto; }
+.wiki-table-wrap.al-right { float: right; clear: right; max-width: 50%; margin: 4px 0 14px 20px; }
+.wiki-table { border-collapse: collapse; border: 1px solid var(--tbc, var(--border-strong)); }
+.wiki-table td { padding: 6px 11px; border: 1px solid var(--tbc, var(--border-strong)); vertical-align: middle; }
+.wiki-table caption { padding: 4px; font-weight: 700; caption-side: top; }
+.wiki-table .wiki-p + .wiki-p { margin-top: 4px; }
+
+/* 그림 · 영상 */
+.wiki-img { max-width: 100%; height: auto; vertical-align: middle; border-radius: 4px; }
+.wiki-img:not([src]) { display: inline-block; min-width: 80px; min-height: 60px; background: var(--surface-3); }
+.wiki-img-wrap.al-center { display: block; text-align: center; }
+.wiki-img-wrap.al-right { float: right; margin: 0 0 8px 14px; }
+.wiki-img-wrap.al-left { float: left; margin: 0 14px 8px 0; }
+.wiki-video { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; margin: 10px 0; }
+.wiki-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; background: #000; }
+
+/* 각주 */
+.wiki-fn-ref { font-size: .75em; line-height: 0; }
+.wiki-fns { clear: both; margin-top: 32px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--text-2); }
+.wiki-fn { margin: 3px 0; padding: 1px 4px; border-radius: 4px; }
+.wiki-fn > a { margin-right: 4px; font-weight: 600; }
+
+/* 분류 페이지 */
+.cat-members { clear: both; margin-top: 12px; }
+
+/* 본문 칸이 좁으면 (휴대폰, 편집기 미리보기) 띄운 표·그림을 풀어서 위아래로 놓는다 */
+.doc-body, .ed-prev { container-type: inline-size; }
+@container (max-width: 600px) {
+  .wiki-table-wrap.al-right { float: none; max-width: 100%; margin: 10px 0; }
+  .wiki-img-wrap.al-right, .wiki-img-wrap.al-left { float: none; margin: 0; }
+}
+
+@media (max-width: 640px) {
+  .wiki { font-size: 15px; }
+  h2.wiki-h { font-size: 1.45em; }
+  h3.wiki-h { font-size: 1.28em; }
+  .wiki-toc { display: block; }
+}

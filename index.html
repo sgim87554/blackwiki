@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' blob: data:; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>블랙위키</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css?v=c8840afc3dfd">
+<link rel="stylesheet" href="wiki.css?v=c8840afc3dfd">
+<script src="theme.js?v=c8840afc3dfd"></script>
+<script type="module" src="app.js?v=c8840afc3dfd"></script>
+</head>
+<body>
+<div id="boot" class="boot">불러오는 중…</div>
+
+<main id="lock" class="lock" hidden>
+  <form id="lock-form" class="lock-card">
+    <svg class="mark lock-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="mark-bg" width="32" height="32" rx="8"/><rect class="mark-fg" x="8" y="9" width="16" height="3" rx="1.5"/><rect class="mark-fg" x="8" y="14.5" width="11" height="3" rx="1.5"/><rect class="mark-fg" x="8" y="20" width="6" height="3" rx="1.5"/></svg>
+    <h1 id="lock-title">블랙위키</h1>
+    <p>초대받은 사람만 볼 수 있는 비공개 위키예요.</p>
+    <div class="fields">
+      <input id="lock-name" class="field" type="text" placeholder="이름" autocomplete="username" aria-label="이름" maxlength="20" required>
+      <input id="lock-pw" class="field" type="password" placeholder="비밀번호" autocomplete="current-password" aria-label="비밀번호" required>
+    </div>
+    <label class="check"><input id="lock-remember" type="checkbox" checked> 이 기기에서 로그인 유지</label>
+    <button id="lock-btn" class="btn primary btn-block" type="submit">로그인</button>
+    <div id="lock-err" class="lock-err" role="alert"></div>
+    <p class="lock-foot">계정이 없다면 관리자에게 초대 링크를 받아 주세요.<br>공용 컴퓨터라면 로그인 유지를 꺼 주세요.</p>
+  </form>
+</main>
+
+<div id="shell" hidden>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#/">
+        <svg class="mark brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="mark-bg" width="32" height="32" rx="8"/><rect class="mark-fg" x="8" y="9" width="16" height="3" rx="1.5"/><rect class="mark-fg" x="8" y="14.5" width="11" height="3" rx="1.5"/><rect class="mark-fg" x="8" y="20" width="6" height="3" rx="1.5"/></svg>
+        <span id="brand-name">블랙위키</span>
+      </a>
+      <nav class="nav" aria-label="주 메뉴">
+        <a href="#/recent" data-nav="recent" data-icon="recent" title="최근 변경"><span>최근 변경</span></a>
+        <a href="#/random" data-nav="random" data-icon="random" title="랜덤 문서"><span>랜덤</span></a>
+        <a href="#/all" data-nav="all" data-icon="list" title="전체 문서"><span>전체 문서</span></a>
+      </nav>
+      <div class="spacer"></div>
+      <div class="search" role="search">
+        <span class="search-ic" data-icon="search"></span>
+        <input id="q" type="search" placeholder="문서 검색  /" autocomplete="off" spellcheck="false" aria-label="문서 검색">
+        <div id="suggest" class="suggest" role="listbox"></div>
+      </div>
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="테마 전환"></button>
+      <button id="new-doc" class="new-doc" type="button" title="새 문서 만들기" data-icon="plus"><span>새 문서</span></button>
+      <div class="me">
+        <button id="me-btn" class="me-btn" type="button" aria-haspopup="menu" aria-expanded="false" data-icon="user"><span id="me-name"></span></button>
+        <div id="me-menu" class="me-menu" role="menu" hidden>
+          <a href="#/account" role="menuitem">내 계정 · 비밀번호</a>
+          <a href="#/admin" id="menu-admin" role="menuitem" hidden>관리 (초대 · 회원)</a>
+          <button type="button" id="menu-logout" role="menuitem">로그아웃</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <article id="article" class="article"></article>
+    <aside id="sidebar" class="sidebar" aria-label="최근 변경"></aside>
+  </div>
+  <footer class="footer"><span id="foot-name"></span><span id="foot-build" class="foot-links"></span></footer>
+</div>
+
+<div id="fn-pop" class="fn-pop" hidden></div>
+</body>
+</html>
